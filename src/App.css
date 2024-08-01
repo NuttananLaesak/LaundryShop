@@ -1,0 +1,343 @@
+/* src/App.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  max-width: 75em;
+  margin: 0 auto;
+  padding-top: 5em; 
+}
+
+.welcome h2 {
+  font-size: 2.5em; 
+  margin-bottom: 1.25em; 
+}
+
+.welcome p {
+  font-size: 1.5em; 
+  margin-bottom: 1.875em; 
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.9375em 1.875em; 
+  border-radius: 1.5625em; 
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #176599;
+  transform: scale(1.05); 
+}
+
+/* สำหรับคอม */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #3498db, #3498db);
+  padding: 0.9375em 1.25em;
+  border-bottom: 0.0625em solid #0bcc92;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0.25em 0.75em rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  flex-direction: row; 
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.3);
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; 
+  gap: 1.25em; 
+  flex-direction: row; 
+}
+
+.nav-links li {
+  margin: 0;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1em; 
+  padding: 10px 20px;
+  border-radius: 25px; 
+  transition: background-color 0.3s, color 0.3s, transform 0.3s; 
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: #176599; 
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+/* สำหรับมือถือ */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    box-shadow: none;
+  }
+
+  .nav-links {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-links li {
+    margin: 0;
+    width: auto; 
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.75em 1em;
+    text-align: center;
+    border-radius: 0;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background-color: #176599;
+    text-shadow: none;
+  }
+}
+
+/* สำหรับเเท็บเล็ต */
+@media (max-width: 768px) and (orientation: landscape) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1em;
+    box-shadow: none;
+  }
+
+  .nav-links {
+    display: flex; 
+    flex-direction: row;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    gap: 0.5em; 
+  }
+
+  .nav-links li {
+    margin: 0;
+    width: auto;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.75em 1em;
+    text-align: center;
+    border-radius: 0;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background-color: #176599;
+    text-shadow: none;
+  }
+}
+
+.machines {
+  margin-top: 2.5em; 
+  margin-bottom: 2.5em; 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25em; 
+  justify-content: center;
+  
+}
+
+.machine {
+  background-color: #fff;
+  border: 0.0625em solid #ddd; 
+  border-radius: 0.625em; 
+  padding: 1.25em; 
+  width: 20.5em; 
+  height: 20.5em; 
+  text-align: center;
+  box-shadow: 0 0.375em 0.75em rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+.machine-image {
+  width: 7.125em; 
+  height: auto;
+  border-radius: 0.625em; 
+  margin-bottom: 0.9375em; 
+  object-fit: cover; 
+  background-color: #ddd; 
+  border: 0.0625em solid #ddd;
+}
+
+.machine:hover {
+  transform: scale(1.05); 
+}
+
+.machine.available {
+  border-color: #28a745;
+  background-color: #d4edda; 
+}
+
+.machine.in-use {
+  border-color: #dc3545;
+  background-color: #f5c6cb; 
+}
+
+.machine h2 {
+  font-size: 1.6em;
+  color: #333;
+}
+
+.machine p {
+  color: #666;
+}
+
+.machine button {
+  color: #fff;
+  border: none;
+  padding: 0.75em 1.5em; 
+  cursor: pointer;
+  border-radius: 1.25em;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.machine button.insert-coin {
+  background-color: #28a745;
+}
+
+.machine button.insert-coin:hover {
+  background-color: #218838;
+  transform: scale(1.05); 
+}
+
+.machine button.cancel {
+  background-color: #dc3545;
+}
+
+.machine button.cancel:hover {
+  background-color: #c82333;
+  transform: scale(1.05); 
+}
+
+.machine-status {
+  margin-top: 2.5em; 
+  margin-bottom: 2.5em; 
+  padding: 1.25em; 
+  background-color: #fff;
+  border: 0.0625em solid #ddd; 
+  border-radius: 0.625em; 
+  box-shadow: 0 0.375em 0.75em rgba(0, 0, 0, 0.2); 
+  max-width: 55em; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.machine-status h2 {
+  text-align: center;
+  color: #333;
+}
+
+.machine-status div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.625em 0; 
+  border-bottom: 0.0625em solid #ddd; 
+}
+
+.machine-status div:last-child {
+  border-bottom: none;
+}
+
+.machine-status p {
+  color: #333;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.popup-content {
+  background-color: #fff;
+  border-radius: 0.625em; 
+  padding: 1.875em;
+  width: 90%;
+  max-width: 31.25em; 
+  text-align: center;
+  box-shadow: 0 0.375em 0.75em rgba(0, 0, 0, 0.3); 
+  animation: popupIn 0.5s ease-out; 
+}
+
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -1.875em);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -1.25em); 
+  }
+}
+
+.popup-content p {
+  margin: 0;
+  color: #333;
+  font-size: 1.3em; 
+}
+
+.popup-content button {
+  margin-top: 1.25em; 
+  background-color: #1e90ff;
+  color: #fff;
+  border: none;
+  padding: 0.875em 1.75em;
+  cursor: pointer;
+  border-radius: 1.5625em; 
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.popup-content button:hover {
+  background-color: #1c86ee;
+  transform: scale(1.05); 
+}
