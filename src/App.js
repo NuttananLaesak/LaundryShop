@@ -1,5 +1,3 @@
-// src/App.js
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
@@ -18,6 +16,7 @@ const initialMachines = [
 function App() {
   const [machines, setMachines] = useState(initialMachines);
   const [popup, setPopup] = useState(null);
+  const [inputAmount, setInputAmount] = useState('');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,7 +26,7 @@ function App() {
             const updatedMachine = { ...machine, timeLeft: machine.timeLeft - 1 };
 
             if (updatedMachine.timeLeft === 60 && !popup) {
-              setPopup(`เครื่องซักผ้าที่ ${updatedMachine.id} ใกล้จะซักผ้าเสร็จเเล้วนะครับ!`);
+              setPopup({ message: `เครื่องซักผ้าที่ ${updatedMachine.id} ใกล้จะซักผ้าเสร็จเเล้วนะครับ!`, machineId: null });
             }
 
             return updatedMachine;
@@ -44,9 +43,20 @@ function App() {
   }, [popup]);
 
   const handleCoinInsert = (machineId) => {
-    setMachines(machines.map(machine => 
-      machine.id === machineId ? { ...machine, timeLeft: machine.defaultTime, inUse: true } : machine
-    ));
+    setPopup({ message: `กรุณาใส่จำนวนเงิน (บาท) สำหรับเครื่องซักผ้าที่ ${machineId}`, machineId });
+  };
+
+  const handleConfirmInsert = () => {
+    const amount = parseFloat(inputAmount);
+    if (!isNaN(amount) && amount > 0) {
+      setMachines(machines.map(machine => 
+        machine.id === popup.machineId ? { ...machine, timeLeft: amount * 10, inUse: true } : machine
+      ));
+      setPopup(null);
+      setInputAmount('');
+    } else {
+      alert('กรุณาใส่จำนวนเงินที่ถูกต้อง');
+    }
   };
 
   const handleCancel = (machineId) => {
@@ -57,6 +67,7 @@ function App() {
 
   const handleClosePopup = () => {
     setPopup(null);
+    setInputAmount('');
   };
 
   return (
@@ -95,12 +106,27 @@ function App() {
             </div>
           } />
         </Routes>
-
         {popup && (
           <div className="popup-overlay">
             <div className="popup-content">
-              <p>{popup}</p>
-              <button onClick={handleClosePopup}>รับทราบ</button>
+              {popup.machineId ? (
+                <div>
+                  <p>{popup.message}</p>
+                  <input 
+                    type="number" 
+                    placeholder="ใส่จำนวนเงิน (บาท)" 
+                    value={inputAmount} 
+                    onChange={(e) => setInputAmount(e.target.value)} 
+                  />
+                  <button onClick={handleConfirmInsert}>ยืนยัน</button>
+                  <button onClick={handleClosePopup}>ยกเลิก</button>
+                </div>
+              ) : (
+                <div>
+                  <p>{popup.message}</p>
+                  <button onClick={handleClosePopup}>รับทราบ</button>
+                </div>
+              )}
             </div>
           </div>
         )}
